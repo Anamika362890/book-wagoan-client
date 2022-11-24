@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Button from '../Button/Button';
+import img from '../../../assest/2.webp'
 
 const Nav = () => {
 
@@ -28,10 +29,20 @@ const Nav = () => {
 
                         </ul>
                     </div>
-                    <a className="btn btn-ghost normal-case text-xl">Book Wagon</a>
+
+                    <Link className=" lg:text-2xl md:text-xl text-lg  flex font-bold text-blue-900 ">
+
+                        <img src={img} className='lg:h-20 md:h-24 lg:mt-0 md:mt-0  mt-6 hidden lg:block md:block ' alt='' />
+
+
+                        <h1 className='lg:mt-5 md:mt-9   '>  Book Wagon</h1>
+
+                    </Link>
                 </div>
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal p-0">
+
+
                         {menuItems}
 
 
