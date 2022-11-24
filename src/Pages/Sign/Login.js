@@ -5,13 +5,31 @@ import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import useTitle from '../../Hooks/Hooks';
 import { AuthContext } from '../../Context/AuthProvider';
+import { GoogleAuthProvider } from 'firebase/auth';
 
 const Login = () => {
     useTitle('Login')
-    const { logIn } = useContext(AuthContext);
+    const { logIn, providerLogin } = useContext(AuthContext);
     const { register, formState: { errors }, handleSubmit
     } = useForm();
     const [loginError, setLoginError] = useState('')
+    const googleProvider = new GoogleAuthProvider()
+
+
+    const handleGoogleLogin = () => {
+        providerLogin(googleProvider)
+            .then(result => {
+                const user = result.user;
+                console.log(user);
+
+
+
+
+
+            })
+            .catch(error => console.error(error))
+
+    }
 
 
     const handleLogin = data => {
@@ -82,7 +100,7 @@ const Login = () => {
                 <div className="flex flex-col w-full border-opacity-50">
 
                     <div className="divider text-gray-400">OR</div>
-                    <button className='btn btn-outline '>
+                    <button onClick={handleGoogleLogin} className='btn btn-outline '>
                         <img className='h-10' src={google} alt='' />
 
                         Log in with google</button>

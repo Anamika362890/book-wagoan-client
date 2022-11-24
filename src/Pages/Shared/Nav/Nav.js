@@ -65,7 +65,16 @@ const Nav = () => {
                     {
                         user?.uid
                             ?
-                            <Link onClick={handleLogout} > <Button>Logout</Button></Link>
+                            <>
+
+                                <Link onClick={handleLogout} > <Button>Logout</Button></Link>
+
+
+                                <div className="tooltip tooltip-bottom" data-tip={user?.email}>
+                                    <img className='w-12  ml-4 rounded-full border ' src={user?.photoURL} alt='' />
+
+                                </div>
+                            </>
                             :
                             <Link to='/login'> <Button>Login</Button></Link>
                     }
