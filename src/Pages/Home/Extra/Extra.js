@@ -12,17 +12,17 @@ const Extra = () => {
 
 
 
-            <div className='grid grid-cols-4 gap-10 mx-10' >
+            <div className='grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-10 lg:mx-0 md:mx-24 mx-11' >
 
-                <div className="card w-64 glass bg-pink-300">
+                <div className="card w-72 glass ">
                     <figure><img className='h-44 w-full ' src={delivery} alt="" /></figure>
-                    <div className='bg-gradient-to-r from-blue-300 to-blue-900 text-white py-2' >
-                        <h2 className="text-center">Fastest Delivery</h2>
+                    <div className='bg-gradient-to-r from-blue-300 to-blue-900 text-white py-2 mx ' >
+                        <h2 className="text-center w- ">Fastest Delivery</h2>
 
                     </div>
 
                 </div>
-                <div className="card w-64 glass">
+                <div className="card w-72 glass">
                     <figure><img className='h-44 w-full' src={cod} alt="" /></figure>
 
                     <div className='bg-gradient-to-r from-blue-300 to-blue-900 text-white py-2' >
@@ -31,7 +31,7 @@ const Extra = () => {
                     </div>
 
                 </div>
-                <div className="card w-64 glass">
+                <div className="card w-72 glass">
                     <figure><img className='h-44 w-full' src={available} alt="" /></figure>
                     <div className='bg-gradient-to-r from-blue-300 to-blue-900 text-white py-2' >
                         <h2 className="text-center">24/7 Available</h2>
@@ -39,7 +39,7 @@ const Extra = () => {
                     </div>
 
                 </div>
-                <div className="card w-64 glass">
+                <div className="card w-72 glass">
                     <figure><img className='h-44 w-full' src={bestPrice} alt="" /></figure>
                     <div className='bg-gradient-to-r from-blue-300 to-blue-900 text-white py-2' >
                         <h2 className="text-center">Sell & Buy in Best Price</h2>
