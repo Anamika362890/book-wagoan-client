@@ -1,6 +1,7 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import { AuthContext } from '../../Context/AuthProvider';
 import Button from '../Shared/Button/Button';
 import useTitle from './../../Hooks/Hooks';
@@ -9,19 +10,37 @@ const Signup = () => {
     useTitle('Register')
     const { register, formState: { errors }, handleSubmit
     } = useForm();
-    const { createUser } = useContext(AuthContext)
+    const { createUser, updateUser } = useContext(AuthContext)
+    const [signUpError, setSignUpError] = useState('')
+
 
     const handleLogin = data => {
         console.log(data);
-
+        setSignUpError('')
         createUser(data.email, data.password)
             .then(result => {
                 const user = result.user;
                 console.log(user);
+                toast("User Created Successfully")
+                const userInfo = {
+                    displayName: data.name,
+                    photoURL: data.photourl,
+
+
+                }
+                updateUser(userInfo)
+                    .then(() => { })
+                    .catch(err => console.log(err));
 
             })
-            .catch(error => console.log(error));
+            .catch(error => {
+                console.log(error)
+                setSignUpError(error.message)
+            });
     }
+
+
+
 
     return (
         <div>
@@ -34,6 +53,13 @@ const Signup = () => {
 
                             <input placeholder="Your Name" type="name" {...register("name", { required: "Name is required" })} className="input input-bordered w-full max-w-xs" />
                             {errors.name && <p className='text-red-600'>{errors.name?.message}</p>}
+
+                        </div>
+
+
+                        <div className="form-control w-full max-w-xs text-gray-600 my-4">
+
+                            <input placeholder="Your PhotoUrl" type="photourl" {...register("photourl")} className="input input-bordered w-full max-w-xs" />
 
                         </div>
 
@@ -59,6 +85,9 @@ const Signup = () => {
                                 pattern: { value: /(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])/, message: 'Password must have uppercase, number and special characters' }
                             })} className=" text-gray-600 input input-bordered w-full max-w-xs" />
                             {errors.password && <p className='text-red-500'>{errors.password.message}</p>}
+                            {
+                                signUpError && <p className='text-red-600'>{signUpError}</p>
+                            }
                         </div>
 
 

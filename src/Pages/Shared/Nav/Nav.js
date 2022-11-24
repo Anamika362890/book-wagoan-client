@@ -70,7 +70,7 @@ const Nav = () => {
                                 <Link onClick={handleLogout} > <Button>Logout</Button></Link>
 
 
-                                <div className="tooltip tooltip-bottom" data-tip={user?.email}>
+                                <div className="tooltip tooltip-bottom" data-tip={user?.displayName}>
                                     <img className='w-12  ml-4 rounded-full border ' src={user?.photoURL} alt='' />
 
                                 </div>
