@@ -11,7 +11,7 @@ const Nav = () => {
         <li><Link to='/about'>About</Link></li>
         <li><Link to='/appointment'>Appointment</Link></li>
         <li><Link to='/reviews'>Reviews</Link></li>
-        <li><Link to='/contact-us'>Contact Us</Link></li>
+        <li><Link to='/blog'>Blog</Link></li>
 
 
     </React.Fragment>
