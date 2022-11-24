@@ -1,0 +1,30 @@
+[
+    {
+        "id": 1,
+        "name": "Poem Books"
+    },
+    {
+        "id": 2,
+        "name": "Novel Book"
+    },
+    {
+        "id": 3,
+        "name": "Academic Book"
+    },
+    {
+        "id": 3,
+        "name": "Book For Kids"
+    },
+    {
+        "id": 3,
+        "name": "Programming Books"
+    },
+    {
+        "id": 3,
+        "name": "Cooking Books"
+    },
+    {
+        "id": 3,
+        "name": "Comics Books"
+    }
+]

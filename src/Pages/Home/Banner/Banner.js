@@ -14,7 +14,7 @@ const Banner = () => {
                     <div className='md:py-7'>
                         <h1 className="lg:text-5xl md:text-6xl text-3xl font-bold text-blue-900 lg:w-[480px]  ">Keep Reading</h1>
                         <p className="lg:py-6 md:py-6 py-4 text-xl lg:w-96 ">Reading Book is fun.Buy and sell your book with best price.</p>
-                        <Button>Get Started</Button>
+                        <Button>Register Now</Button>
                     </div>
                 </div>
             </div>
