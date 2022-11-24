@@ -3,9 +3,11 @@ import qstn1 from '../../assest/blog1.jpg'
 import qstn2 from '../../assest/qstn2.png'
 import qstn3 from '../../assest/qstn3.png'
 import qstn4 from '../../assest/qstn4.png'
+import useTitle from '../../Hooks/Hooks';
 import Blog from './Blog';
 
 const Blogs = () => {
+    useTitle('Blog')
     const BlogsData = [
         {
             id: 1,

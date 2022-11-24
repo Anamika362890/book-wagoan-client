@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import Button from '../Button/Button';
 import img from '../../../assest/2.webp'
+import { AuthContext } from '../../../Context/AuthProvider';
 
 const Nav = () => {
+    const { user, logout } = useContext(AuthContext);
 
     const menuItems = <React.Fragment>
 
@@ -14,7 +16,15 @@ const Nav = () => {
         <li><Link to='/blog'>Blog</Link></li>
 
 
+
+
     </React.Fragment>
+
+    const handleLogout = () => {
+        logout()
+            .then()
+            .catch();
+    }
     return (
         <div className='max-w-screen-xl mx-auto'>
             <div className="navbar bg-base-100">
@@ -30,7 +40,7 @@ const Nav = () => {
                         </ul>
                     </div>
 
-                    <Link className=" lg:text-2xl md:text-xl text-lg  flex font-bold text-blue-900 ">
+                    <Link to='/' className=" lg:text-2xl md:text-xl text-lg  flex font-bold text-blue-900 ">
 
                         <img src={img} className='lg:h-20 md:h-24 lg:mt-0 md:mt-0  mt-6 hidden lg:block md:block ' alt='' />
 
@@ -46,10 +56,19 @@ const Nav = () => {
                         {menuItems}
 
 
+
                     </ul>
                 </div>
                 <div className="navbar-end">
-                    <Link to='/login'> <Button>Login</Button></Link>
+
+
+                    {
+                        user?.uid
+                            ?
+                            <Link onClick={handleLogout} > <Button>Logout</Button></Link>
+                            :
+                            <Link to='/login'> <Button>Login</Button></Link>
+                    }
                 </div>
             </div>
         </div>
