@@ -45,9 +45,9 @@ const Signup = () => {
     return (
         <div>
             <div className='hero bg-gradient-to-r from-blue-300 to-blue-900 text-white '>
-                <div className=' w-[450px] text-center m-32 p-10 rounded-2xl bg-white ' >
+                <div className='w-[340px] md:w-[450px] text-center md:m-32 md:p-10 my-14 py-10 rounded-2xl bg-white ' >
                     <h1 className='text-4xl font-bold mb-6 text-blue-900 '>Sign Up</h1>
-                    <form className=' ml-8' onSubmit={handleSubmit(handleLogin)}>
+                    <form className='md:ml-8 ml-3' onSubmit={handleSubmit(handleLogin)}>
 
                         <div className="form-control w-full max-w-xs text-gray-600 my-4">
 
