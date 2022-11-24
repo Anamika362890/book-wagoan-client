@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Button from '../Button/Button';
 
 const Nav = () => {
 
@@ -14,7 +15,7 @@ const Nav = () => {
 
     </React.Fragment>
     return (
-        <div>
+        <div className='max-w-screen-xl mx-auto'>
             <div className="navbar bg-base-100">
                 <div className="navbar-start">
                     <div className="dropdown">
@@ -37,7 +38,7 @@ const Nav = () => {
                     </ul>
                 </div>
                 <div className="navbar-end">
-                    <a className="btn">Login</a>
+                    <Button>Login</Button>
                 </div>
             </div>
         </div>
