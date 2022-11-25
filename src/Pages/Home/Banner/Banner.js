@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { Link } from 'react-router-dom';
 import bannerPic from '../../../assest/group-of-people-reading-and-borrowing-books_53876-43122.jpeg'
+import { AuthContext } from '../../../Context/AuthProvider';
 import Button from '../../Shared/Button/Button';
 
 const Banner = () => {
+    const { user } = useContext(AuthContext);
     return (
         <div className="hero  my-12 ">
 
@@ -14,7 +17,13 @@ const Banner = () => {
                     <div className='md:py-7'>
                         <h1 className="lg:text-5xl md:text-6xl text-3xl font-bold text-blue-900 lg:w-[480px]  ">Keep Reading</h1>
                         <p className="lg:py-6 md:py-6 py-4 text-xl lg:w-96 ">Reading Book is fun.Buy and sell your book with best price.</p>
-                        <Button>Register Now</Button>
+                        {
+                            user?.uid ?
+                                <Link to='/' > <Button>Get Started</Button></Link>
+                                :
+                                <Link to='/signup' > <Button>Register Now</Button></Link>
+
+                        }
                     </div>
                 </div>
             </div>

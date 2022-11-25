@@ -10,15 +10,26 @@ const Nav = () => {
     const menuItems = <React.Fragment>
 
         <li><Link to='/'>Home</Link></li>
+
         <li><Link to='/about'>About</Link></li>
         <li><Link to='/appointment'>Appointment</Link></li>
         <li><Link to='/reviews'>Reviews</Link></li>
         <li><Link to='/blog'>Blog</Link></li>
+        {
+            user?.uid ?
+                <>
+                    <li><Link to='/dashboard'>Dashboard</Link></li>
+
+                </>
+                :
+                <li><Link ></Link></li>
+
+        }
 
 
 
 
-    </React.Fragment>
+    </React.Fragment >
 
     const handleLogout = () => {
         logout()
@@ -54,6 +65,8 @@ const Nav = () => {
 
 
                         {menuItems}
+
+
 
 
 

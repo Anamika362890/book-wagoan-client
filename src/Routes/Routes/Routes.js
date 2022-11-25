@@ -1,4 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
+import AddProduct from "../../Dashboard/AddProduct/AddProduct";
 import Blogs from "../../Pages/Blog/Blogs";
 import FullHome from "../../Pages/Home/FullHome/FullHome";
 import Route404 from "../../Pages/Route404/Route404";
@@ -31,6 +32,11 @@ export const router = createBrowserRouter(
                 {
                     path: "/blog",
                     element: <Blogs></Blogs>
+                },
+
+                {
+                    path: "/add",
+                    element: <AddProduct></AddProduct>
                 },
 
 

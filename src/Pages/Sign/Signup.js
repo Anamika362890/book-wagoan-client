@@ -1,10 +1,11 @@
 import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
-import { toast } from 'react-toastify';
+
 import { AuthContext } from '../../Context/AuthProvider';
 import Button from '../Shared/Button/Button';
 import useTitle from './../../Hooks/Hooks';
+import toast from 'react-hot-toast';
 
 const Signup = () => {
     useTitle('Register')
@@ -21,7 +22,7 @@ const Signup = () => {
             .then(result => {
                 const user = result.user;
                 console.log(user);
-                toast("User Created Successfully")
+                toast.success("User Created Successfully");
                 const userInfo = {
                     displayName: data.name,
                     photoURL: data.photourl,
@@ -71,10 +72,10 @@ const Signup = () => {
                         </div>
                         <div className="form-control w-full mb-4 max-w-xs">
                             <select placeholder="Select" {...register("category", { required: "Please choose one" })} className='text-gray-600 input input-bordered w-full max-w-xs' >
-                                <option value="">Select...</option>
-                                <option value="Seller">Seller</option>
+
                                 <option value="Buyer">Buyer</option>
-                            </select>
+
+                                <option value="Seller">Seller</option>                            </select>
 
                         </div>
                         <div className="form-control w-full max-w-xs">
