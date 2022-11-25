@@ -1,0 +1,181 @@
+[
+    {
+        "service_id": "01",
+        "name": "Poem Books",
+        "img": "https://i.ibb.co/BzJ2bSs/poem.webp",
+        "books": [
+            {
+                "book_name": "Sukanto Somogro",
+                "book_img": "https://i.ibb.co/NsyQ6Zm/sukanto.jpg",
+                "price": " 130",
+                "original_price": "250",
+                "purchase_year": "2017",
+                "posted_date": "25-11-22",
+                "posted_time": "8:50 PM",
+                "seller_name": "Anamika",
+                "condition_type": "Fair",
+                "phn_no": "018611498",
+                "details": "This book written By Sukanto Bhattacharya.Sukanta Bhattacharya was a young poet who believed in the Marxist ideology of Bengali literature and had a progressive spirit. Although the gifted poet passed away at the age of twenty-one years, he has achieved great fame with his amazing poetic power in just a few years."
+            },
+            {
+                "book_name": "And Still I Rise",
+                "book_img": "https://i.ibb.co/q5gCBg9/2c4.jpg",
+                "price": "200",
+                "original_price": "300",
+                "purchase_year": "2020",
+                "posted_date": "25-11-22",
+                "posted_time": "9:13 PM",
+                "seller_name": "Romana",
+                "condition_type": "Good",
+                "phn_no": "093467789021",
+                "details": "This book written By Maya Agelou.Still I Rise” is primarily about self-respect and confidence. In the poem, Angelou reveals how she will overcome anything through her self-esteem. She shows how nothing can get her down. She will rise to any occasion and nothing, not even her skin color, will hold her back."
+            }
+        ]
+    },
+    {
+        "service_id": "02",
+        "name": "Novel Books",
+        "img": "https://i.ibb.co/1RHSw4y/012767900-1567496428-books-791923-1920.jpg",
+        "books": [
+            {
+                "book_name": "Misir Ali Somogro",
+                "book_img": "https://i.ibb.co/X8k5Ktm/misir.jpg",
+                "price": "400",
+                "original_price": "500",
+                "purchase_year": "2015",
+                "posted_date": "25-11-22",
+                "posted_time": "10:23 PM",
+                "seller_name": "Romana",
+                "condition_type": "Excellent",
+                "phn_no": "087643235778",
+                "details": "This book is written by Humayan Ahmed.He was  a Bangladeshi novelist, dramatist, screenwriter, filmmaker, songwriter, scholar, and professor. His breakthrough was his debut novel Nondito Noroke published in 1972."
+            },
+            {
+                "book_name": "A Chrismas Carol",
+                "book_img": "https://i.ibb.co/BZsX9D7/chrismas.jpg",
+                "price": "200",
+                "original_price": "300",
+                "purchase_year": "2019",
+                "posted_date": "25-11-22",
+                "posted_time": "11:50 PM",
+                "seller_name": "Sumona",
+                "condition_type": "Fair",
+                "phn_no": "07521345678",
+                "details": "This book is written by Puffin Classics,"
+            }
+        ]
+    },
+    {
+        "service_id": "03",
+        "name": "Books For Kids",
+        "img": "https://i.ibb.co/4s1rtz3/kids-bookwebp.webp",
+        "books": [
+            {
+                "book_name": "Kids book",
+                "book_img": "https://i.ibb.co/BZsX9D7/chrismas.jpg",
+                "price": "200",
+                "original_price": "300",
+                "purchase_year": "2019",
+                "posted_date": "25-11-22",
+                "posted_time": "11:50 PM",
+                "seller_name": "Sumona",
+                "condition_type": "Fair",
+                "phn_no": "07521345678",
+                "details": "This book is written by Puffin Classics,"
+            }
+        ]
+    },
+    {
+        "service_id": "04",
+        "name": "Academic Book",
+        "img": "https://i.ibb.co/vcb2bB5/academic.webp",
+        "books": [
+            {
+                "book_name": "Bangla Book For Class 9",
+                "book_img": "https://i.ibb.co/0FQP7k7/images-q-tbn-ANd9-Gc-QE47a0b-R3q-IL-K5y-De-L1-Lqidm5-Tm-Lsxrkrg-J2-T9-Gisv-Yt3lj-A4-Ku4-VCk3-Dn9-PIq.jpg",
+                "price": "140",
+                "original_price": "200",
+                "purchase_year": "2021",
+                "posted_date": "25-11-22",
+                "posted_time": "10:55 PM",
+                "seller_name": "Ahona",
+                "condition_type": "Good",
+                "phn_no": "0976432223456",
+                "details": "This is the Bangla 2nd paper book for class 7."
+            }
+        ]
+    },
+    {
+        "service_id": "05",
+        "name": "Programming Book",
+        "img": "https://i.ibb.co/GncX9Mn/Programming-Books.jpg",
+        "books": [
+            {
+                "book_name": "A Chrismas Carol",
+                "book_img": "https://i.ibb.co/BZsX9D7/chrismas.jpg",
+                "price": "200",
+                "original_price": "300",
+                "purchase_year": "2019",
+                "posted_date": "25-11-22",
+                "posted_time": "11:50 PM",
+                "seller_name": "Sumona",
+                "condition_type": "Fair",
+                "phn_no": "07521345678",
+                "details": "This book is written by Puffin Classics,"
+            }
+        ]
+    },
+    {
+        "service_id": "06",
+        "name": "Cooking Book",
+        "img": "https://i.ibb.co/WBmjrZ5/cooking-book.jpg",
+        "books": [
+            {
+                "book_name": "Cook",
+                "book_img": "https://i.ibb.co/BZsX9D7/chrismas.jpg",
+                "price": "200",
+                "original_price": "300",
+                "purchase_year": "2019",
+                "posted_date": "25-11-22",
+                "posted_time": "11:50 PM",
+                "seller_name": "Sumona",
+                "condition_type": "Fair",
+                "phn_no": "07521345678",
+                "details": "This book is written by Puffin Classics,"
+            }
+        ]
+    },
+    {
+        "service_id": "07",
+        "name": "Comics Book",
+        "img": "https://i.ibb.co/XY2qMGG/Comic-Books.jpg",
+        "books": [
+            {
+                "book_name": "Narayan Debnath Comics Somogro",
+                "book_img": "https://i.ibb.co/x7Y2ZDp/comic.jpg",
+                "price": "120",
+                "original_price": "200",
+                "purchase_year": "2019",
+                "posted_date": "25-11-22",
+                "posted_time": "10:8 PM",
+                "seller_name": "Anamika",
+                "condition_type": "Good",
+                "phn_no": "09384499999999",
+                "details": "This book is written by Narayan Debnath. He was a famous Indian Bengali comics artist. For more than fifty years, his written and drawn comics have enthralled Bengalis young and old. Apart from comic-strips, he also illustrated children's novels."
+            },
+            {
+                "book_name": "Narayan Debnath Comics Somogro",
+                "book_img": "https://i.ibb.co/x7Y2ZDp/comic.jpg",
+                "price": "120",
+                "original_price": "200",
+                "purchase_year": "2019",
+                "posted_date": "25-11-22",
+                "posted_time": "10:8 PM",
+                "seller_name": "Anamika",
+                "condition_type": "Good",
+                "phn_no": "09384499999999",
+                "details": "This book is written by Narayan Debnath. He was a famous Indian Bengali comics artist. For more than fifty years, his written and drawn comics have enthralled Bengalis young and old. Apart from comic-strips, he also illustrated children's novels."
+            }
+        ]
+    }
+]

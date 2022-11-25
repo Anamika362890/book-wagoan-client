@@ -1,9 +1,11 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import book from '../../../assest/012767900_1567496428-books-791923_1920.jpg'
 import Button from '../../Shared/Button/Button';
 
 const Category = ({ category }) => {
-    const { name, img } = category;
+    const { _id, name, img } = category;
+
     return (
         <div>
             <div className="card  h-44 shadow-2xl image-full">
@@ -14,7 +16,7 @@ const Category = ({ category }) => {
                     </div>
 
                     <div className="card-actions mx-auto  ">
-                        <Button>See All Books</Button>
+                        <Link to={`/category/${_id}`}><Button >See All Books</Button></Link>
                     </div>
                 </div>
 

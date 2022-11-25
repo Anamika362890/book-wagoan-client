@@ -4,10 +4,6 @@ import { useQuery } from '@tanstack/react-query';
 
 const ProductCategory = () => {
 
-
-
-
-
     const { data: categories = [] } = useQuery({
         queryKey: ['categories'],
         queryFn: async () => {
