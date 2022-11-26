@@ -48,6 +48,7 @@ const Nav = () => {
                             {menuItems}
 
 
+
                         </ul>
                     </div>
 
@@ -70,16 +71,22 @@ const Nav = () => {
 
 
 
+
+
+
                     </ul>
                 </div>
                 <div className="navbar-end">
+
 
 
                     {
                         user?.uid
                             ?
                             <>
-
+                                <label htmlFor="dashboard-drawer-2" tabIndex={2} className=" lg:hidden">
+                                    <img className='mr-3' src='https://i.ibb.co/0FQ1X8x/icons8-dashboard-layout-48.png' alt='' />
+                                </label>
                                 <Link onClick={handleLogout} > <Button>Logout</Button></Link>
 
 

@@ -1,4 +1,6 @@
 import React from 'react';
+import Button from '../Pages/Shared/Button/Button';
+import BookingModal from './BookingModal';
 
 const Books = ({ book, name }) => {
     const { book_name, book_img, details, price, original_price, purchase_year, posted_date, posted_time, condition_type, seller_name, phn_no } = book;
@@ -25,9 +27,18 @@ const Books = ({ book, name }) => {
                     <p><span className='font-bold'> Date </span>: {posted_date}</p>
                     <p><span className='font-bold'> Time </span>: {posted_time}</p>
 
-                    <div className="card-actions justify-end">
-                        <button className="btn btn-primary">Listen</button>
-                    </div>
+
+
+
+                    {/* The button to open modal */}
+                    <Button> <label htmlFor="book-modal" >Book Now</label></Button>
+
+                    <BookingModal
+                        book_name={book_name}
+                        price={price}
+                    ></BookingModal>
+
+
                 </div>
             </div>
         </div>
