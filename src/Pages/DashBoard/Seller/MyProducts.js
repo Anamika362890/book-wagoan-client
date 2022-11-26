@@ -1,10 +1,11 @@
 import React from 'react';
 import Button from '../../Shared/Button/Button';
+import Advertise from './../../Home/Advertise/Advertise';
 
-const MyOrders = () => {
+const MyProducts = () => {
     return (
         <div>
-            <h1 className='text-4xl text-blue-900 font-bold text-center my-5'>My orders</h1>
+            <h1 className='text-4xl text-blue-900 font-bold text-center my-5'>My Products</h1>
 
             <div className="overflow-x-auto">
                 <table className="table w-full">
@@ -14,8 +15,10 @@ const MyOrders = () => {
                             <th></th>
                             <th>Image</th>
 
-                            <th>Title</th>
-                            <th>Payment</th>
+                            <th>Name</th>
+                            <th>Advertise</th>
+                            <th>Status</th>
+                            <th>Delete</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -28,8 +31,14 @@ const MyOrders = () => {
 
                             <td>Quality Control Specialist</td>
                             <td>
-                                <Button>Pay Now</Button>
+                                <Button >Click Here</Button>
                             </td>
+
+                            <td>Available</td>
+                            <td>
+                                <button className='btn bg-red-600 border-none hover:bg-red-500 '>Delete</button>
+                            </td>
+
                         </tr>
 
 
@@ -41,4 +50,4 @@ const MyOrders = () => {
     );
 };
 
-export default MyOrders;
+export default MyProducts;

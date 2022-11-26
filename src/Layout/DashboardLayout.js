@@ -31,6 +31,7 @@ const DashboardLayout = () => {
                             <li><Link to='/dashboard' >My Orders</Link></li>
                             {/* seller */}
                             <li><Link to='/dashboard/addProduct' >Add Product</Link></li>
+                            <li><Link to='/dashboard/myProducts' >My Product</Link></li>
 
                             <li><Link to='/dashboard/myBuyers' >My Buyers</Link></li>
 
@@ -38,9 +39,9 @@ const DashboardLayout = () => {
 
                             {/* Admin */}
 
-                            <li><Link to='/dashboard/allSeller' >My Sellers</Link></li>
+                            <li><Link to='/dashboard/allSeller' >All Sellers</Link></li>
 
-                            <li><Link to='/dashboard/allBuyers' >My Buyers</Link></li>
+                            <li><Link to='/dashboard/allBuyers' >All Buyers</Link></li>
 
 
 
