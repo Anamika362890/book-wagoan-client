@@ -40,11 +40,21 @@ const AddProduct = () => {
                     console.log(imgData.data.url);
 
                     const book = {
-                        name: data.Pname,
+                        book_name: data.Pname,
+                        book_image: imgData.data.url,
+                        price: data.price,
                         Real_price: data.Rprice,
-                        _id: data.category,
-                        image: imgData.data.url,
-                        date: new Date(),
+                        purchase_year: data.year,
+                        location: data.location,
+                        category: data.category,
+                        seller_name: data.Sname,
+                        condition_type: data.condition,
+                        phon_no: data.phnno,
+                        details: data.details,
+                        posted_date: Date().slice(4, 15),
+                        posted_time: Date().slice(16, 25),
+
+
 
 
                     }
@@ -71,6 +81,7 @@ const AddProduct = () => {
         <div className='w-96 p-7'>
             <h2 className="text-4xl">Add A Product</h2>
             <form onSubmit={handleSubmit(handleAddProduct)}>
+
                 <div className="form-control w-full max-w-xs">
                     <label className="label"> <span className="label-text">Product Name</span></label>
                     <input type="text" {...register("Pname", {
@@ -78,23 +89,29 @@ const AddProduct = () => {
                     })} className="input input-bordered w-full max-w-xs" />
                     {errors.Pname && <p className='text-red-500'>{errors.Pname.message}</p>}
                 </div>
+
+
                 <div className="form-control w-full max-w-xs">
                     <label className="label"> <span className="label-text">Product Original Price</span></label>
-                    <input type="text" {...register("Rprice", {
+                    <input type="number" placeholder='Enter original price in taka ' {...register("Rprice", {
                         required: "Product original name is Required"
                     })} className="input input-bordered w-full max-w-xs" />
                     {errors.Rprice && <p className='text-red-500'>{errors.Rprice.message}</p>}
                 </div>
+
+
                 <div className="form-control w-full max-w-xs">
                     <label className="label"> <span className="label-text">Product Selling Price</span></label>
-                    <input type="text" {...register("price", {
+                    <input type="number" placeholder='Enter product price in taka' {...register("price", {
                         required: "Product price is Required"
                     })} className="input input-bordered w-full max-w-xs" />
                     {errors.price && <p className='text-red-500'>{errors.price.message}</p>}
                 </div>
+
+
                 <div className="form-control w-full max-w-xs">
                     <label className="label"> <span className="label-text">Location</span></label>
-                    <input type="text" {...register("price", {
+                    <input type="text" {...register("location", {
                         required: "Location is Required"
                     })} className="input input-bordered w-full max-w-xs" />
                     {errors.location && <p className='text-red-500'>{errors.location.message}</p>}
@@ -102,27 +119,15 @@ const AddProduct = () => {
 
                 <div className="form-control w-full max-w-xs">
                     <label className="label"> <span className="label-text">Year of use</span></label>
-                    <input type="text" {...register("year", {
+                    <input type="text"  {...register("year", {
                         required: "Year of use is required"
                     })} className="input input-bordered w-full max-w-xs" />
                     {errors.year && <p className='text-red-500'>{errors.year.message}</p>}
                 </div>
 
-                <div className="form-control w-full max-w-xs">
-                    <label className="label"> <span className="label-text">Date</span></label>
-                    <input type="text" {...register("date", {
-                        required: ""
-                    })} className="input input-bordered w-full max-w-xs" />
-                    {errors.date && <p className='text-red-500'>{errors.date.message}</p>}
-                </div>
 
-                <div className="form-control w-full max-w-xs">
-                    <label className="label"> <span className="label-text">Time</span></label>
-                    <input type="text" {...register("time", {
-                        required: ""
-                    })} className="input input-bordered w-full max-w-xs" />
-                    {errors.time && <p className='text-red-500'>{errors.time.message}</p>}
-                </div>
+
+
 
                 <div className="form-control w-full max-w-xs">
                     <label className="label"> <span className="label-text">Seller Name</span></label>
@@ -131,6 +136,7 @@ const AddProduct = () => {
                     })} className="input input-bordered w-full max-w-xs" />
 
                 </div>
+
                 <div className="form-control w-full max-w-xs">
                     <label className="label"> <span className="label-text">Product condition type</span></label>
                     <input type="text" {...register("condition", {
@@ -138,13 +144,15 @@ const AddProduct = () => {
                     })} className="input input-bordered w-full max-w-xs" />
 
                 </div>
+
                 <div className="form-control w-full max-w-xs">
                     <label className="label"> <span className="label-text">Mobile number</span></label>
-                    <input type="number" {...register("phno", {
+                    <input type="number" {...register("phnno", {
                         required: "Provide your mobile number"
                     })} className="input input-bordered w-full max-w-xs" />
 
                 </div>
+
 
                 <div className="form-control w-full max-w-xs">
                     <label className="label"> <span className="label-text">Category</span></label>
@@ -162,6 +170,7 @@ const AddProduct = () => {
 
                     </select>
                 </div>
+
                 <div className="form-control w-full max-w-xs">
                     <label className="label"> <span className="label-text">Photo</span></label>
                     <input type="file" {...register("image", {
@@ -169,6 +178,17 @@ const AddProduct = () => {
                     })} className="w-full mb-6  text-lg text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50    " />
                     {errors.img && <p className='text-red-500'>{errors.img.message}</p>}
                 </div>
+
+
+                <div className="form-control w-full max-w-xs">
+                    <label className="label"> <span className="label-text">Details</span></label>
+                    <textarea placeholder='Write here' className="textarea textarea-bordered" {...register("details", {
+                        required: "Give some description"
+                    })} />
+
+                </div>
+
+
                 <Button >Add a Product</Button>
             </form>
         </div>
