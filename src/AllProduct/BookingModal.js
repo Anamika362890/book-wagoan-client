@@ -1,9 +1,55 @@
 import React, { useContext } from 'react';
 import Button from '../Pages/Shared/Button/Button';
 import { AuthContext } from './../Context/AuthProvider';
+import { useForm } from 'react-hook-form';
+import { toast } from 'react-hot-toast';
 
 const BookingModal = ({ book_name, price }) => {
     const { user } = useContext(AuthContext);
+
+
+
+    const handleBooking = event => {
+        event.preventDefault();
+        const form = event.target;
+        const buyer_name = form.Bname.value;
+        const buyer_email = form.Bemail.value;
+        const book_name = form.book.value;
+        const price = form.price.value;
+        const phone = form.phone.value;
+        const location = form.location.value;
+
+
+        const booking = {
+            buyer_name, buyer_email, book_name, price, phone, location
+
+        }
+        console.log(booking);
+
+        fetch('http://localhost:5000/booking', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(booking)
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+
+                if (data.acknowledged) {
+
+                    toast.success('Booking Confirmed')
+
+                }
+                else {
+                    toast.error(data.message);
+                }
+
+            })
+    }
+
+
     return (
 
 
@@ -11,40 +57,34 @@ const BookingModal = ({ book_name, price }) => {
             <input type="checkbox" id="book-modal" className="modal-toggle" />
             <div className="modal">
                 <div className="modal-box relative">
-                    <label htmlFor="booking-modal" className="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
-                    <h3 className="text-lg font-bold text-center">Book Now!!</h3>
+                    <label htmlFor="book-modal" className="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
+                    <h3 className="text-lg font-bold text-blue-900 my-4">Book Now!!</h3>
+                    <h1>hiii {user?.displayName}</h1>
 
-                    <form className='grid grid-cols-1 gap-3 mt-10'>
-
-
-
+                    <form onSubmit={handleBooking} className='grid grid-cols-1 gap-3 mt-10'>
 
 
-                        <label className="label"> <span className="label-text">Your name</span></label>
-                        <input name='name' type="name" defaultValue={user?.displayName} disabled placeholder="Your Name" className="input input-bordered w-full " />
-
-                        <label className="label"> <span className="label-text">Your Email</span></label>
-                        <input name='email' type="email" defaultValue={user?.email} disabled placeholder="Your Email" className="input input-bordered w-full " />
-
-                        <label className="label"> <span className="label-text">Book Name</span></label>
-                        <input name='item' type="text" defaultValue={book_name} disabled placeholder="" className="input input-bordered w-full " />
-
-                        <label className="label"> <span className="label-text">Book Price</span></label>
-                        <input name='price' type="text" defaultValue={price} disabled placeholder="" className="input input-bordered w-full " />
 
 
-                        <label className="label"> <span className="label-text">Your Phone Number</span></label>
-                        <input name='phone' type="number" className="input input-bordered w-full " />
 
-                        <label className="label"> <span className="label-text">Location</span></label>
+                        <input name='Bname' type="name" defaultValue={user?.displayName} disabled placeholder="Your Name" className="input input-bordered w-full " />
+
+
+                        <input name='Bemail' type="email" defaultValue={user?.email} disabled placeholder="Your Email" className="input input-bordered w-full " />
+
+                        <input name='book' type="text" defaultValue={book_name} disabled className="input input-bordered w-full " />
+
+                        <input name='price' type="number" defaultValue={price} disabled className="input input-bordered w-full " />
+
+                        <input name='phone' type="text" placeholder="Your Phone" className="input input-bordered w-full " />
+
                         <input name='location' type="text" placeholder="Enter a meeting location" className="input input-bordered w-full " />
 
-
-                        <div className="modal-action">
-                            <Button>Submit</Button>
-
-                            <label htmlFor="book-modal" className="btn">Yay!</label>
+                        <div>
+                            <Button>Book Now</Button>
                         </div>
+
+
                     </form>
                 </div>
             </div>

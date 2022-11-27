@@ -45,11 +45,12 @@ const ProductAdd = () => {
                         Real_price: data.Rprice,
                         purchase_year: data.year,
                         location: data.location,
-                        category: data.category,
+                        category_id: data.category,
                         seller_name: data.Sname,
                         condition_type: data.condition,
                         phon_no: data.phnno,
                         details: data.details,
+
                         posted_date: Date().slice(4, 15),
                         posted_time: Date().slice(16, 25),
 
@@ -70,6 +71,9 @@ const ProductAdd = () => {
                         .then(res => res.json())
                         .then(result => {
                             console.log(result);
+                            toast.success("Product Created Successfully");
+
+
 
 
                         })
@@ -162,7 +166,7 @@ const ProductAdd = () => {
                             {
                                 categories.map(category => <option
                                     key={category._id}
-                                    value={category.name}
+                                    value={category.service_id}
                                 >{category.name}</option>)
                             }
 

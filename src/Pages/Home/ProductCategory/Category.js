@@ -4,7 +4,7 @@ import book from '../../../assest/012767900_1567496428-books-791923_1920.jpg'
 import Button from '../../Shared/Button/Button';
 
 const Category = ({ category }) => {
-    const { _id, name, img } = category;
+    const { name, img, service_id } = category;
 
     return (
         <div>
@@ -16,7 +16,7 @@ const Category = ({ category }) => {
                     </div>
 
                     <div className="card-actions mx-auto  ">
-                        <Link to={`/category/${_id}`}><Button >See All Books</Button></Link>
+                        <Link name={name} to={`/products/${service_id}`}><Button >See All Books</Button></Link>
                     </div>
                 </div>
 

@@ -1,4 +1,5 @@
 import React from 'react';
+import Button from '../../Shared/Button/Button';
 
 const AllSellers = () => {
     return (
@@ -15,6 +16,7 @@ const AllSellers = () => {
 
                             <th>Name</th>
                             <th>Email</th>
+                            <th>Verification</th>
                             <th>Delete</th>
                         </tr>
                     </thead>
@@ -28,6 +30,11 @@ const AllSellers = () => {
 
                             <td>Anamika</td>
                             <td>Email</td>
+
+                            <td>
+                                <Button>Verify</Button>
+                            </td>
+
                             <td>
                                 <td>
                                     <button className='btn bg-red-600 border-none hover:bg-red-500 '>Delete</button>

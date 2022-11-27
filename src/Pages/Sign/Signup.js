@@ -26,7 +26,7 @@ const Signup = () => {
                 const userInfo = {
                     displayName: data.name,
                     photoURL: data.photourl,
-
+                    metadata: data.category
 
 
                 }
