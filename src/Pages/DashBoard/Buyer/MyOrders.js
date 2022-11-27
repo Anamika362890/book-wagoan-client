@@ -1,7 +1,23 @@
-import React from 'react';
+import { useQuery } from '@tanstack/react-query';
+import React, { useContext } from 'react';
+import { AuthContext } from '../../../Context/AuthProvider';
 import Button from '../../Shared/Button/Button';
 
 const MyOrders = () => {
+
+    const { user } = useContext(AuthContext);
+    const url = `http://localhost:5000/booking?email=${user?.email}`;
+
+    const { data: booking = [] } = useQuery({
+        queryKey: ['booking', user?.email],
+        queryFn: async () => {
+            const res = await fetch(url);
+            const data = await res.json();
+            return data;
+        }
+    })
+
+
     return (
         <div>
             <h1 className='text-4xl text-blue-900 font-bold text-center my-5'>My orders</h1>
@@ -15,23 +31,27 @@ const MyOrders = () => {
                             <th>Image</th>
 
                             <th>Title</th>
+                            <th>Price</th>
                             <th>Payment</th>
                         </tr>
                     </thead>
                     <tbody>
 
-                        <tr>
-                            <th>1</th>
-                            <td><div className="mask mask-squircle w-12 h-12">
-                                <img src="https://t4.ftcdn.net/jpg/03/85/50/01/360_F_385500115_T8QiYsPeliQ5tE3npwOuJNUfunqFBo1U.jpg" alt="Avatar Tailwind CSS Component" />
-                            </div></td>
+                        {
+                            booking.map((booked, i) => <tr>
+                                <th>{i + 1}</th>
+                                <td><div className="mask mask-squircle w-12 h-12">
+                                    <img src={booked.img} alt="Avatar Tailwind CSS Component" />
+                                </div></td>
 
-                            <td>Quality Control Specialist</td>
-                            <td>
-                                <Button>Pay Now</Button>
-                            </td>
-                        </tr>
-
+                                <td>{booked.book_name}</td>
+                                <td>{booked.price} Taka</td>
+                                <td>
+                                    <Button>Pay Now</Button>
+                                </td>
+                            </tr>
+                            )
+                        }
 
                     </tbody>
                 </table>
