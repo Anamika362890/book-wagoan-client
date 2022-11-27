@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 import { AuthContext } from '../../Context/AuthProvider';
 import Button from '../Shared/Button/Button';
@@ -14,25 +14,32 @@ const Signup = () => {
     const { createUser, updateUser } = useContext(AuthContext)
     const [signUpError, setSignUpError] = useState('')
 
+    const navigate = useNavigate();
 
+    const location = useLocation();
+    const from = location.state?.from?.pathname || '/';
     const handleLogin = data => {
-        console.log(data);
+        console.log(data.category);
         setSignUpError('')
         createUser(data.email, data.password)
             .then(result => {
                 const user = result.user;
                 console.log(user);
+                const role = data.category;
+                const pic = data.photoURL;
+                navigate(from, { replace: true });
                 toast.success("User Created Successfully");
                 const userInfo = {
                     displayName: data.name,
                     photoURL: data.photourl,
-                    metadata: data.category
+
+
 
 
                 }
                 updateUser(userInfo)
                     .then(() => {
-                        saveUser(data.name, data.email, data.category
+                        saveUser(data.name, data.email, data.category, data.photourl
                         );
                     })
                     .catch(err => console.log(err));
@@ -44,8 +51,8 @@ const Signup = () => {
             });
     }
 
-    const saveUser = (name, email) => {
-        const user = { name, email };
+    const saveUser = (name, email, role, photourl) => {
+        const user = { name, email, role, photourl };
         fetch('http://localhost:5000/users', {
             method: 'POST',
             headers: {

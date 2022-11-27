@@ -3,9 +3,11 @@ import Button from '../Pages/Shared/Button/Button';
 import { AuthContext } from './../Context/AuthProvider';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
 
-const BookingModal = ({ book_name, price }) => {
+const BookingModal = ({ book_name, price, category_id }) => {
     const { user } = useContext(AuthContext);
+    const navigate = useNavigate();
 
 
 
@@ -37,9 +39,9 @@ const BookingModal = ({ book_name, price }) => {
             .then(data => {
                 console.log(data);
 
-                if (data.acknowledged) {
-
+                if (data.acknowledged === true) {
                     toast.success('Booking Confirmed')
+                    form.reset();
 
                 }
                 else {
@@ -59,7 +61,7 @@ const BookingModal = ({ book_name, price }) => {
                 <div className="modal-box relative">
                     <label htmlFor="book-modal" className="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
                     <h3 className="text-lg font-bold text-blue-900 my-4">Book Now!!</h3>
-                    <h1>hiii {user?.displayName}</h1>
+
 
                     <form onSubmit={handleBooking} className='grid grid-cols-1 gap-3 mt-10'>
 
@@ -76,11 +78,12 @@ const BookingModal = ({ book_name, price }) => {
 
                         <input name='price' type="number" defaultValue={price} disabled className="input input-bordered w-full " />
 
-                        <input name='phone' type="text" placeholder="Your Phone" className="input input-bordered w-full " />
+                        <input name='phone' required type="text" placeholder="Your Phone" className="input input-bordered w-full " />
 
-                        <input name='location' type="text" placeholder="Enter a meeting location" className="input input-bordered w-full " />
+                        <input name='location' required type="text" placeholder="Enter a meeting location" className="input input-bordered w-full " />
 
                         <div>
+
                             <Button>Book Now</Button>
                         </div>
 

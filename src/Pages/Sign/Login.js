@@ -9,7 +9,7 @@ import { GoogleAuthProvider } from 'firebase/auth';
 
 const Login = () => {
     useTitle('Login')
-    const { logIn, providerLogin } = useContext(AuthContext);
+    const { logIn, providerLogin, } = useContext(AuthContext);
     const { register, formState: { errors }, handleSubmit
     } = useForm();
     const [loginError, setLoginError] = useState('')
@@ -26,7 +26,9 @@ const Login = () => {
         providerLogin(googleProvider)
             .then(result => {
                 const user = result.user;
-                console.log(user);
+                console.log(user.displayName
+                );
+                saveUser(user.displayName, user.email, "Buyer", user.photoURL);
                 navigate(from, { replace: true });
 
             })
@@ -42,6 +44,8 @@ const Login = () => {
             .then(result => {
                 const user = result.user;
                 console.log(user);
+
+
                 navigate(from, { replace: true });
 
 
@@ -52,7 +56,22 @@ const Login = () => {
             });
     }
 
+    const saveUser = (name, email, role, photourl) => {
+        const user = { name, email, role, photourl };
+        fetch('http://localhost:5000/users', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(user)
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
 
+
+            })
+    }
 
 
 
