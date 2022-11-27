@@ -5,13 +5,14 @@ import { useForm } from 'react-hook-form';
 import { toast } from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 
-const BookingModal = ({ book_name, price, category_id }) => {
+const BookingModal = ({ book_name, price, category_id, book_image }) => {
     const { user } = useContext(AuthContext);
     const navigate = useNavigate();
 
-
+    const img = book_image;
 
     const handleBooking = event => {
+
         event.preventDefault();
         const form = event.target;
         const buyer_name = form.Bname.value;
@@ -22,9 +23,9 @@ const BookingModal = ({ book_name, price, category_id }) => {
         const location = form.location.value;
 
 
-        const booking = {
-            buyer_name, buyer_email, book_name, price, phone, location
 
+        const booking = {
+            buyer_name, buyer_email, book_name, price, phone, location, img
         }
         console.log(booking);
 

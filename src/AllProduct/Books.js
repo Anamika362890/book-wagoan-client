@@ -5,7 +5,7 @@ import BookingModal from './BookingModal';
 
 
 const Books = ({ book, name }) => {
-    const { book_name, book_image, category_id, details, price, Real_price, purchase_year, posted_date, posted_time, condition_type, seller_name, phon_no, location } = book;
+    const { seeler_image, book_name, book_image, category_id, details, price, Real_price, purchase_year, posted_date, posted_time, condition_type, seller_name, phon_no, location } = book;
     return (
 
 
@@ -57,7 +57,7 @@ const Books = ({ book, name }) => {
                         <div className=' w-96'>
                             <div className='flex'>
                                 <div className="w-20 ">
-                                    <img className='rounded-full' src="https://placeimg.com/192/192/people" alt='' />
+                                    <img className='rounded-full' src={seeler_image} alt='' />
                                 </div>
                                 <div className=' mx-10'>
                                     <h1><span className='font-bold'>Posted By</span> : {seller_name}</h1>
@@ -77,6 +77,7 @@ const Books = ({ book, name }) => {
 
                     </div>
                     <BookingModal
+                        book_image={book_image}
                         book_name={book_name}
                         price={price}
                     ></BookingModal>
