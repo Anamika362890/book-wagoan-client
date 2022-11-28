@@ -11,7 +11,11 @@ const MyOrders = () => {
     const { data: booking = [] } = useQuery({
         queryKey: ['booking', user?.email],
         queryFn: async () => {
-            const res = await fetch(url);
+            const res = await fetch(url, {
+                headers: {
+                    authorization: `bearer ${localStorage.getItem('accessToken')}`
+                }
+            });
             const data = await res.json();
             return data;
         }
@@ -38,7 +42,7 @@ const MyOrders = () => {
                     <tbody>
 
                         {
-                            booking.map((booked, i) => <tr>
+                            booking.map((booked, i) => <tr key={booked._id}>
                                 <th>{i + 1}</th>
                                 <td><div className="mask mask-squircle w-12 h-12">
                                     <img src={booked.img} alt="Avatar Tailwind CSS Component" />

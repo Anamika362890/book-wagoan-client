@@ -5,6 +5,7 @@ import DashboardLayout from "../../Layout/DashboardLayout";
 import Blogs from "../../Pages/Blog/Blogs";
 import AllBuyers from "../../Pages/DashBoard/Admin/AllBuyers";
 import AllSellers from "../../Pages/DashBoard/Admin/AllSellers";
+import AllUsers from "../../Pages/DashBoard/Admin/AllUsers";
 import ReportedItems from "../../Pages/DashBoard/Admin/ReportedItems";
 import MyOrders from "../../Pages/DashBoard/Buyer/MyOrders";
 import MyBuyers from "../../Pages/DashBoard/Seller/MyBuyers";
@@ -97,6 +98,11 @@ export const router = createBrowserRouter(
                 {
                     path: '/dashboard/allBuyers',
                     element: <AllBuyers></AllBuyers>
+                },
+
+                {
+                    path: '/dashboard/allusers',
+                    element: <AllUsers></AllUsers>
                 },
 
                 {

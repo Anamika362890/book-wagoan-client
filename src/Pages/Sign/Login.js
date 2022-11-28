@@ -6,6 +6,7 @@ import { useForm } from 'react-hook-form';
 import useTitle from '../../Hooks/Hooks';
 import { AuthContext } from '../../Context/AuthProvider';
 import { GoogleAuthProvider } from 'firebase/auth';
+import UseToken from '../../Hooks/useToken';
 
 const Login = () => {
     useTitle('Login')
@@ -15,8 +16,13 @@ const Login = () => {
     const [loginError, setLoginError] = useState('')
     const location = useLocation();
     const navigate = useNavigate();
+    const [loginUserEmail, setLoginUserEmail] = useState('');
+    const [token] = UseToken(loginUserEmail);
 
     const from = location.state?.from?.pathname || '/';
+    if (token) {
+        navigate(from, { replace: true });
+    }
 
 
     const googleProvider = new GoogleAuthProvider()
@@ -26,8 +32,8 @@ const Login = () => {
         providerLogin(googleProvider)
             .then(result => {
                 const user = result.user;
-                console.log(user.displayName
-                );
+                console.log(user);
+
                 saveUser(user.displayName, user.email, "Buyer", user.photoURL);
                 navigate(from, { replace: true });
 
@@ -44,9 +50,9 @@ const Login = () => {
             .then(result => {
                 const user = result.user;
                 console.log(user);
+                setLoginUserEmail(data.email);
 
 
-                navigate(from, { replace: true });
 
 
             })

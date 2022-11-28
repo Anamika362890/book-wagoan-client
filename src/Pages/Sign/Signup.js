@@ -6,6 +6,7 @@ import { AuthContext } from '../../Context/AuthProvider';
 import Button from '../Shared/Button/Button';
 import useTitle from './../../Hooks/Hooks';
 import toast from 'react-hot-toast';
+import UseToken from '../../Hooks/useToken';
 
 const Signup = () => {
     useTitle('Register')
@@ -13,11 +14,18 @@ const Signup = () => {
     } = useForm();
     const { createUser, updateUser } = useContext(AuthContext)
     const [signUpError, setSignUpError] = useState('')
+    const [createdUserEmail, setCreatedUserEmail] = useState('')
+    const [token] = UseToken(createdUserEmail);
 
     const navigate = useNavigate();
 
     const location = useLocation();
     const from = location.state?.from?.pathname || '/';
+
+    if (token) {
+        navigate('/')
+    }
+
     const handleLogin = data => {
         console.log(data.category);
         setSignUpError('')
@@ -63,10 +71,14 @@ const Signup = () => {
             .then(res => res.json())
             .then(data => {
                 console.log(data);
+                setCreatedUserEmail(email);
+
 
 
             })
     }
+
+
 
 
     return (
