@@ -43,6 +43,7 @@ const ProductAdd = () => {
 
                     const book = {
                         seeler_image: user.photoURL,
+                        email: user.email,
 
                         book_name: data.Pname,
                         book_image: imgData.data.url,

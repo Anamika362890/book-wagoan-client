@@ -1,11 +1,31 @@
-import React from 'react';
+import { useQuery } from '@tanstack/react-query';
+import React, { useContext } from 'react';
+import { AuthContext } from '../../../Context/AuthProvider';
 import Button from '../../Shared/Button/Button';
 import Advertise from './../../Home/Advertise/Advertise';
 
 const MyProducts = () => {
+
+    const { user } = useContext(AuthContext);
+    const url = `http://localhost:5000/lproducts?email=${user?.email}`;
+
+    const { data: products = [] } = useQuery({
+        queryKey: ['products', user?.email],
+        queryFn: async () => {
+            const res = await fetch(url, {
+                headers: {
+                    authorization: `bearer ${localStorage.getItem('accessToken')}`
+                }
+            });
+            const data = await res.json();
+            return data;
+        }
+    })
+
+
     return (
         <div>
-            <h1 className='text-4xl text-blue-900 font-bold text-center my-5'>My Products</h1>
+            <h1 className='text-4xl text-blue-900 font-bold text-center my-5'>My Products {products.length}</h1>
 
             <div className="overflow-x-auto">
                 <table className="table w-full">
@@ -23,24 +43,26 @@ const MyProducts = () => {
                     </thead>
                     <tbody>
 
-                        <tr>
-                            <th>1</th>
-                            <td><div className="mask mask-squircle w-12 h-12">
-                                <img src="https://t4.ftcdn.net/jpg/03/85/50/01/360_F_385500115_T8QiYsPeliQ5tE3npwOuJNUfunqFBo1U.jpg" alt="Avatar Tailwind CSS Component" />
-                            </div></td>
+                        {
+                            products.map((product, i) => <tr key={product._id} >
+                                <th>{i + 1}</th>
+                                <td><div className="mask mask-squircle w-12 h-12">
+                                    <img src={product.book_image} alt="Avatar Tailwind CSS Component" />
+                                </div></td>
 
-                            <td>Quality Control Specialist</td>
-                            <td>
-                                <Button >Click Here</Button>
-                            </td>
+                                <td>{product.book_name}</td>
+                                <td>
+                                    <Button >Click Here</Button>
+                                </td>
 
-                            <td>Available</td>
-                            <td>
-                                <button className='btn bg-red-600 border-none hover:bg-red-500 '>Delete</button>
-                            </td>
+                                <td>Available</td>
+                                <td>
+                                    <button className='btn bg-red-600 border-none hover:bg-red-500 '>Delete</button>
+                                </td>
 
-                        </tr>
-
+                            </tr>
+                            )
+                        }
 
                     </tbody>
                 </table>
