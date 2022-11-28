@@ -41,7 +41,7 @@ const Blogs = () => {
     return (
         <div className='max-w-[1200px] mx-auto my-14'>
             <h1 className='text-4xl font-bold text-blue-900 text-center mb-14'>Welcome To Our Blog Page</h1>
-            <div className='grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-14 mx-2 '>
+            <div className='grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-14  lg:mx-2 '>
                 {
                     BlogsData.map(blog => <Blog
                         key={blog.id}

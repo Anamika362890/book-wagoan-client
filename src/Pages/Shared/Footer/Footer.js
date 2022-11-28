@@ -11,7 +11,7 @@ const Footer = () => {
             <footer className="footer footer-center p-10 bg-black text-primary-content">
                 <div>
 
-                    <img src={img} className='lg:h-20 md:h-24 lg:mt-0' alt='' />
+                    <img src={img} className=' h-20 lg:h-20 md:h-24 lg:mt-0' alt='' />
                     <p className="font-bold">
                         <h1 className='text-xl'>  Book Wagon</h1>
                     </p>

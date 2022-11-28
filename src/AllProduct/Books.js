@@ -14,7 +14,7 @@ const Books = ({ book, name }) => {
             <div >
 
                 <div className="card h-[850px] w-96 glass bg-base-200">
-                    <figure><img className='lg:w-[470px] lg:h-[320px] mx-3 rounded-3xl' src={book_image} alt="" /></figure>
+                    <figure><img className='h-44 w-44 mt-8 mx-3 rounded-3xl' src={book_image} alt="" /></figure>
                     <div className="card-body">
                         <div className='flex'>
                             <div>
