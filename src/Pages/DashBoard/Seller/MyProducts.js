@@ -1,26 +1,57 @@
 import { useQuery } from '@tanstack/react-query';
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
+import toast from 'react-hot-toast';
 import { AuthContext } from '../../../Context/AuthProvider';
 import Button from '../../Shared/Button/Button';
+import Loading from '../../Shared/Loading/Loading';
 import Advertise from './../../Home/Advertise/Advertise';
+import ConfirmationModal from './../../Shared/Modal/ConfirmationModal';
 
 const MyProducts = () => {
 
-    const { user } = useContext(AuthContext);
-    const url = `http://localhost:5000/lproducts?email=${user?.email}`;
+    const [deletingProducts, setDeletingProducts] = useState(null);
 
-    const { data: products = [] } = useQuery({
+    const closeModal = () => {
+        setDeletingProducts(null);
+    }
+    const { user } = useContext(AuthContext);
+    const { data: products, isLoading, refetch } = useQuery({
         queryKey: ['products', user?.email],
         queryFn: async () => {
-            const res = await fetch(url, {
-                headers: {
-                    authorization: `bearer ${localStorage.getItem('accessToken')}`
-                }
-            });
-            const data = await res.json();
-            return data;
+            try {
+                const res = await fetch(`http://localhost:5000/lproducts?email=${user?.email}`, {
+                    headers: {
+                        authorization: `bearer ${localStorage.getItem('accessToken')}`
+                    }
+                });
+                const data = await res.json();
+                return data;
+            }
+            catch (error) {
+
+            }
         }
-    })
+    });
+    const handleDeletingProduct = product => {
+        console.log(product);
+        fetch(`http://localhost:5000/products/${product._id}`, {
+            method: 'DELETE',
+            headers: {
+                authorization: `bearer ${localStorage.getItem('accessToken')}`
+            }
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.deletedCount > 0) {
+                    refetch();
+                    toast.success(`Buyer ${product.book_name} deleted successfully`)
+                }
+            })
+
+    }
+    if (isLoading) {
+        return <Loading></Loading>
+    }
 
 
     return (
@@ -57,7 +88,9 @@ const MyProducts = () => {
 
                                 <td>Available</td>
                                 <td>
-                                    <button className='btn bg-red-600 border-none hover:bg-red-500 '>Delete</button>
+                                    <td>
+                                        <label onClick={() => setDeletingProducts(product)} htmlFor="Confirmation-modal" className="btn bg-gradient-to-r from-red-800 to-red-700 border-none">Delete</label>
+                                    </td>
                                 </td>
 
                             </tr>
@@ -67,6 +100,21 @@ const MyProducts = () => {
                     </tbody>
                 </table>
             </div>
+
+            {
+                deletingProducts &&
+                <ConfirmationModal
+
+                    title={`Are you sure you wat to delete the  ${deletingProducts.book_name} ?`}
+                    message={`If you delete this seller it can not be undone`}
+                    closeModal={closeModal}
+                    successAction={handleDeletingProduct}
+                    modalData={deletingProducts}
+
+                ></ConfirmationModal>
+            }
+
+
 
         </div>
     );
