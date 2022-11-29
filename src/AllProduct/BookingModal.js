@@ -5,7 +5,7 @@ import { useForm } from 'react-hook-form';
 import { toast } from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 
-const BookingModal = ({ book_name, price, category_id, book_image }) => {
+const BookingModal = ({ book_name, price, category_id, book_image, setOrdering }) => {
     const { user } = useContext(AuthContext);
     const navigate = useNavigate();
 
@@ -42,7 +42,8 @@ const BookingModal = ({ book_name, price, category_id, book_image }) => {
 
                 if (data.acknowledged === true) {
                     toast.success('Booking Confirmed')
-                    form.reset();
+                    setOrdering(null);
+
 
                 }
                 else {

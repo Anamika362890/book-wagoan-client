@@ -1,6 +1,6 @@
 import React from 'react';
 
-const ConfirmationModal = ({ title, message, closeModal }) => {
+const ConfirmationModal = ({ title, message, closeModal, successAction, modalData }) => {
     return (
         <div>
             <input type="checkbox" id="Confirmation-modal" className="modal-toggle" />
@@ -9,8 +9,9 @@ const ConfirmationModal = ({ title, message, closeModal }) => {
                     <h3 className="font-bold text-lg">{title}</h3>
                     <p className="py-4">{message}</p>
                     <div className="modal-action">
-                        <label htmlFor="Confirmation-modal" className="btn">Yes</label>
-                        <label onClick={closeModal} htmlFor="Confirmation-modal" className="btn">Cancel</label>
+                        <label className='btn bg-red-600 border-none' onClick={() => { successAction(modalData) }}  >Delete</label>
+
+                        <label onClick={closeModal} htmlFor="Confirmation-modal" className="btn  bg-gradient-to-r from-blue-800 to-blue-700 border-none ">Cancel</label>
                     </div>
                 </div>
             </div>

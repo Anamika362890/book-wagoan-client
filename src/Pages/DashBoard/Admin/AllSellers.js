@@ -3,6 +3,8 @@ import Button from '../../Shared/Button/Button';
 import { AuthContext } from './../../../Context/AuthProvider';
 import { useQuery } from '@tanstack/react-query';
 import ConfirmationModal from '../../Shared/Modal/ConfirmationModal';
+import toast from 'react-hot-toast';
+import Loading from './../../Shared/Loading/Loading';
 
 const AllSellers = () => {
     const [deletingSeller, setDeletingSeller] = useState(null);
@@ -11,23 +13,51 @@ const AllSellers = () => {
         setDeletingSeller(null);
     }
 
-    const { user } = useContext(AuthContext);
-    const url = 'https://book-wagon-server.vercel.app/sellers';
 
-    const { data: sellers = [] } = useQuery({
+
+
+    const { user } = useContext(AuthContext);
+
+
+
+
+    const { data: sellers, isLoading, refetch } = useQuery({
         queryKey: ['sellers'],
         queryFn: async () => {
-            const res = await fetch(url, {
-                headers: {
-                    authorization: `bearer ${localStorage.getItem('accessToken')}`
-                }
-            });
-            const data = await res.json();
-            return data;
+            try {
+                const res = await fetch('http://localhost:5000/sellers', {
+                    headers: {
+                        authorization: `bearer ${localStorage.getItem('accessToken')}`
+                    }
+                });
+                const data = await res.json();
+                return data;
+            }
+            catch (error) {
+
+            }
         }
-    })
+    });
+    const handleDeletingSeller = seller => {
+        console.log(seller);
+        fetch(`http://localhost:5000/sellers/${seller._id}`, {
+            method: 'DELETE',
+            headers: {
+                authorization: `bearer ${localStorage.getItem('accessToken')}`
+            }
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.deletedCount > 0) {
+                    refetch();
+                    toast.success(`Seller ${seller.name} deleted successfully`)
+                }
+            })
 
-
+    }
+    if (isLoading) {
+        return <Loading></Loading>
+    }
     return (
         <div>
             <h1 className='text-4xl text-blue-900 font-bold text-center my-5'>All Sellers</h1>
@@ -86,6 +116,8 @@ const AllSellers = () => {
                     title={`Are you sure you wat to delete the seller ${deletingSeller.name} ?`}
                     message={`If you delete this seller it can not be undone`}
                     closeModal={closeModal}
+                    successAction={handleDeletingSeller}
+                    modalData={deletingSeller}
 
                 ></ConfirmationModal>
             }

@@ -73,7 +73,7 @@ const Books = ({ book }) => {
                             </div>
 
                             <div className='mx-32 mt-3'>
-                                <label onClick={() => setOrdering(book)} htmlFor="book-modal" >Book Now</label>
+                                <label className='btn bg-gradient-to-r from-blue-800 to-blue-700 border-none' onClick={() => setOrdering(book)} htmlFor="book-modal" >Book Now</label>
 
 
                             </div>
@@ -96,6 +96,7 @@ const Books = ({ book }) => {
                     book_image={ordering?.book_image}
                     book_name={ordering?.book_name}
                     price={ordering?.price}
+                    setOrdering={setOrdering}
                 ></BookingModal>
             }
         </div>
