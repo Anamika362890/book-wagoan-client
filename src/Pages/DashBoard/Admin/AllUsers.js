@@ -67,7 +67,7 @@ const AllUsers = () => {
 
                                     <td  >
                                         {user?.admin !== "admin" &&
-                                            <button onClick={() => handleMakeAdmin(user._id)} className='btn btn-xs btn-primary'>Make Admin</button>}
+                                            <button onClick={() => handleMakeAdmin(user._id)} className='btn  bg-gradient-to-r from-blue-800 to-blue-700 border-none'>Make Admin</button>}
                                     </td>
 
 

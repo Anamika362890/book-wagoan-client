@@ -92,7 +92,7 @@ const AllBuyers = () => {
 
                                 <td>
                                     <td>
-                                        <label onClick={() => setDeletingBuyer(buyer)} htmlFor="Confirmation-modal" className="btn bg-red-600 border-none hover:bg-red-500">Delete</label>
+                                        <label onClick={() => setDeletingBuyer(buyer)} htmlFor="Confirmation-modal" className="btn bg-gradient-to-r from-red-800 to-red-700 border-none">Delete</label>
                                     </td>
                                 </td>
                             </tr>)

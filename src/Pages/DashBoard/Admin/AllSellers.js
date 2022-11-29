@@ -5,18 +5,17 @@ import { useQuery } from '@tanstack/react-query';
 import ConfirmationModal from '../../Shared/Modal/ConfirmationModal';
 import toast from 'react-hot-toast';
 import Loading from './../../Shared/Loading/Loading';
+import VerifyModal from '../../Shared/Modal/VerifyModal';
 
 const AllSellers = () => {
     const [deletingSeller, setDeletingSeller] = useState(null);
+    const [verified, setVerified] = useState(null);
 
     const closeModal = () => {
         setDeletingSeller(null);
     }
 
     const { user } = useContext(AuthContext);
-
-
-
 
     const { data: sellers, isLoading, refetch } = useQuery({
         queryKey: ['sellers'],
@@ -53,6 +52,31 @@ const AllSellers = () => {
             })
 
     }
+
+
+
+    const handleVerifiedSeller = id => {
+        fetch(`http://localhost:5000/users/verify/${id}`, {
+            method: 'PUT',
+            headers: {
+                authorization: `bearer ${localStorage.getItem('accessToken')}`
+            }
+
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)
+                if (data.modifiedCount > 0) {
+                    toast.success("Seller Verified SuccessFully")
+                    refetch();
+                }
+
+                else {
+                    toast.success("Seller is already Verified")
+                }
+            })
+    }
+
     if (isLoading) {
         return <Loading></Loading>
     }
@@ -87,12 +111,32 @@ const AllSellers = () => {
                                 <td>{seller.email}</td>
 
                                 <td>
-                                    <Button>Verify</Button>
+
+                                    {
+
+                                        seller?.status !== "verified" &&
+                                        <label onClick={() => handleVerifiedSeller(seller._id)} htmlFor="Confirmation-modal" className=" btn bg-gradient-to-r from-blue-800 to-blue-700 border-none">Verify</label>
+
+
+                                    }
+
+                                    {
+
+
+                                        <label onClick={() => handleVerifiedSeller(seller._id)} htmlFor="Confirmation-modal" className=" btn bg-gradient-to-r from-green-800 to-green-700 border-none">Already Verify</label>
+
+
+                                    }
+
+
+
+
+
                                 </td>
 
                                 <td>
 
-                                    <label onClick={() => setDeletingSeller(seller)} htmlFor="Confirmation-modal" className="btn bg-red-600 border-none hover:bg-red-500">Delete</label>
+                                    <label onClick={() => setDeletingSeller(seller)} htmlFor="Confirmation-modal" className="btn bg-gradient-to-r from-red-800 to-red-700 border-none">Delete</label>
 
 
                                 </td>
@@ -118,6 +162,21 @@ const AllSellers = () => {
                     modalData={deletingSeller}
 
                 ></ConfirmationModal>
+            }
+
+
+            {
+                verified &&
+                <VerifyModal
+                    title={`Are you sure you want to Verify ${verified.name} ?`}
+                    message={`If verify Go to`}
+                    closeModal={closeModal}
+                    successAction={handleVerifiedSeller}
+                    modalData={verified}
+
+                >
+
+                </VerifyModal>
             }
 
         </div>
