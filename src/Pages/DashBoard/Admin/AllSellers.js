@@ -1,20 +1,26 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import Button from '../../Shared/Button/Button';
 import { AuthContext } from './../../../Context/AuthProvider';
 import { useQuery } from '@tanstack/react-query';
+import ConfirmationModal from '../../Shared/Modal/ConfirmationModal';
 
 const AllSellers = () => {
+    const [deletingSeller, setDeletingSeller] = useState(null);
+
+    const closeModal = () => {
+        setDeletingSeller(null);
+    }
 
     const { user } = useContext(AuthContext);
-    const url = 'http://localhost:5000/sellers';
+    const url = 'https://book-wagon-server.vercel.app/sellers';
 
     const { data: sellers = [] } = useQuery({
         queryKey: ['sellers'],
         queryFn: async () => {
             const res = await fetch(url, {
-                // headers: {
-                //     authorization: `bearer ${localStorage.getItem('accessToken')}`
-                // }
+                headers: {
+                    authorization: `bearer ${localStorage.getItem('accessToken')}`
+                }
             });
             const data = await res.json();
             return data;
@@ -58,9 +64,13 @@ const AllSellers = () => {
 
                                 <td>
                                     <td>
-                                        <button className='btn bg-red-600 border-none hover:bg-red-500 '>Delete</button>
+                                        <label onClick={() => setDeletingSeller(seller)} htmlFor="Confirmation-modal" className="btn bg-red-600 border-none hover:bg-red-500">Delete</label>
+
                                     </td>
                                 </td>
+
+
+
                             </tr>)
                         }
 
@@ -68,6 +78,17 @@ const AllSellers = () => {
                     </tbody>
                 </table>
             </div>
+
+            {
+                deletingSeller &&
+                <ConfirmationModal
+
+                    title={`Are you sure you wat to delete the seller ${deletingSeller.name} ?`}
+                    message={`If you delete this seller it can not be undone`}
+                    closeModal={closeModal}
+
+                ></ConfirmationModal>
+            }
 
         </div>
     );

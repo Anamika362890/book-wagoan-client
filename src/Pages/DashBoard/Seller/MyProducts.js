@@ -44,7 +44,7 @@ const MyProducts = () => {
                     <tbody>
 
                         {
-                            products.map((product, i) => <tr key={product._id} >
+                            products.length && products.map((product, i) => <tr key={product._id} >
                                 <th>{i + 1}</th>
                                 <td><div className="mask mask-squircle w-12 h-12">
                                     <img src={product.book_image} alt="Avatar Tailwind CSS Component" />

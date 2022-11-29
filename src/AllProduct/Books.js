@@ -1,11 +1,17 @@
 import React from 'react';
 import Button from '../Pages/Shared/Button/Button';
 import BookingModal from './BookingModal';
+import { useState } from 'react';
 
 
 
-const Books = ({ book, name }) => {
+const Books = ({ book }) => {
+    const [ordering, setOrdering] = useState(null);
+
+
+
     const { seeler_image, book_name, book_image, category_id, details, price, Real_price, purchase_year, posted_date, posted_time, condition_type, seller_name, phon_no, location } = book;
+
     return (
 
 
@@ -67,7 +73,7 @@ const Books = ({ book, name }) => {
                             </div>
 
                             <div className='mx-32 mt-3'>
-                                <Button  > <label htmlFor="book-modal" >Book Now</label></Button>
+                                <label onClick={() => setOrdering(book)} htmlFor="book-modal" >Book Now</label>
 
 
                             </div>
@@ -76,26 +82,22 @@ const Books = ({ book, name }) => {
                         </div>
 
                     </div>
-                    <BookingModal
-                        book_image={book_image}
-                        book_name={book_name}
-                        price={price}
-                    ></BookingModal>
+
                 </div>
 
 
 
-
-
-
-
-
-
-
-
-
-
             </div>
+
+
+            {
+                ordering &&
+                <BookingModal
+                    book_image={ordering?.book_image}
+                    book_name={ordering?.book_name}
+                    price={ordering?.price}
+                ></BookingModal>
+            }
         </div>
 
 

@@ -19,15 +19,15 @@ const Signup = () => {
 
     const navigate = useNavigate();
 
-    const location = useLocation();
-    const from = location.state?.from?.pathname || '/';
+
+
 
     if (token) {
         navigate('/')
     }
 
     const handleLogin = data => {
-        console.log(data.category);
+        console.log(data);
         setSignUpError('')
         createUser(data.email, data.password)
             .then(result => {
@@ -35,8 +35,10 @@ const Signup = () => {
                 console.log(user);
                 const role = data.category;
                 const pic = data.photoURL;
-                navigate(from, { replace: true });
+
                 toast.success("User Created Successfully");
+
+
                 const userInfo = {
                     displayName: data.name,
                     photoURL: data.photourl,
@@ -155,3 +157,4 @@ const Signup = () => {
 };
 
 export default Signup;
+
