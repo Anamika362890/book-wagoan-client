@@ -9,7 +9,7 @@ const ConfirmationModal = ({ title, message, closeModal, successAction, modalDat
                     <h3 className="font-bold text-lg">{title}</h3>
                     <p className="py-4">{message}</p>
                     <div className="modal-action">
-                        <label className='btn bg-red-600 border-none' onClick={() => { successAction(modalData) }}  >Delete</label>
+                        <label htmlFor="Confirmation-modal" className='btn bg-red-600 border-none' onClick={() => { successAction(modalData) }}  >Delete</label>
 
                         <label onClick={closeModal} htmlFor="Confirmation-modal" className="btn  bg-gradient-to-r from-blue-800 to-blue-700 border-none ">Cancel</label>
                     </div>

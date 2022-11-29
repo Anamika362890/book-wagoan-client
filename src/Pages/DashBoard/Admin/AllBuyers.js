@@ -1,24 +1,66 @@
 import { useQuery } from '@tanstack/react-query';
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
+import toast from 'react-hot-toast';
 import { AuthContext } from '../../../Context/AuthProvider';
 import Button from '../../Shared/Button/Button';
+import Loading from '../../Shared/Loading/Loading';
+import ConfirmationModal from '../../Shared/Modal/ConfirmationModal';
 
 const AllBuyers = () => {
-    const { user } = useContext(AuthContext);
-    const url = 'http://localhost:5000/buyers';
 
-    const { data: buyers = [] } = useQuery({
+
+    const [deletingBuyer, setDeletingBuyer] = useState(null);
+
+    const closeModal = () => {
+        setDeletingBuyer(null);
+    }
+
+    const { user } = useContext(AuthContext);
+
+
+    const { data: buyers, isLoading, refetch } = useQuery({
         queryKey: ['buyers'],
         queryFn: async () => {
-            const res = await fetch(url, {
-                headers: {
-                    authorization: `bearer ${localStorage.getItem('accessToken')}`
-                }
-            });
-            const data = await res.json();
-            return data;
+            try {
+                const res = await fetch('http://localhost:5000/buyers', {
+                    headers: {
+                        authorization: `bearer ${localStorage.getItem('accessToken')}`
+                    }
+                });
+                const data = await res.json();
+                return data;
+            }
+            catch (error) {
+
+            }
         }
-    })
+    });
+
+
+
+
+
+
+    const handleDeletingBuyer = buyer => {
+        console.log(buyer);
+        fetch(`http://localhost:5000/buyers/${buyer._id}`, {
+            method: 'DELETE',
+            headers: {
+                authorization: `bearer ${localStorage.getItem('accessToken')}`
+            }
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.deletedCount > 0) {
+                    refetch();
+                    toast.success(`Buyer ${buyer.name} deleted successfully`)
+                }
+            })
+
+    }
+    if (isLoading) {
+        return <Loading></Loading>
+    }
 
     return (
         <div>
@@ -50,7 +92,7 @@ const AllBuyers = () => {
 
                                 <td>
                                     <td>
-                                        <button className='btn bg-red-600 border-none hover:bg-red-500 '>Delete</button>
+                                        <label onClick={() => setDeletingBuyer(buyer)} htmlFor="Confirmation-modal" className="btn bg-red-600 border-none hover:bg-red-500">Delete</label>
                                     </td>
                                 </td>
                             </tr>)
@@ -63,6 +105,19 @@ const AllBuyers = () => {
                     </tbody>
                 </table>
             </div>
+
+            {
+                deletingBuyer &&
+                <ConfirmationModal
+
+                    title={`Are you sure you wat to delete the seller ${deletingBuyer.name} ?`}
+                    message={`If you delete this seller it can not be undone`}
+                    closeModal={closeModal}
+                    successAction={handleDeletingBuyer}
+                    modalData={deletingBuyer}
+
+                ></ConfirmationModal>
+            }
 
         </div>
     );

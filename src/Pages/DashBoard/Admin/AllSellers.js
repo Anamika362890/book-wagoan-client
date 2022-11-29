@@ -13,9 +13,6 @@ const AllSellers = () => {
         setDeletingSeller(null);
     }
 
-
-
-
     const { user } = useContext(AuthContext);
 
 
@@ -38,9 +35,10 @@ const AllSellers = () => {
             }
         }
     });
+
     const handleDeletingSeller = seller => {
         console.log(seller);
-        fetch(`http://localhost:5000/sellers/${seller._id}`, {
+        fetch(`http://localhost:5000/users/${seller._id}`, {
             method: 'DELETE',
             headers: {
                 authorization: `bearer ${localStorage.getItem('accessToken')}`
@@ -93,10 +91,10 @@ const AllSellers = () => {
                                 </td>
 
                                 <td>
-                                    <td>
-                                        <label onClick={() => setDeletingSeller(seller)} htmlFor="Confirmation-modal" className="btn bg-red-600 border-none hover:bg-red-500">Delete</label>
 
-                                    </td>
+                                    <label onClick={() => setDeletingSeller(seller)} htmlFor="Confirmation-modal" className="btn bg-red-600 border-none hover:bg-red-500">Delete</label>
+
+
                                 </td>
 
 
