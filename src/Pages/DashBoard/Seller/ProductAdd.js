@@ -16,15 +16,26 @@ const ProductAdd = () => {
     const imageHostKey = process.env.REACT_APP_imgbb_key;
 
 
-    const { data: categories = [], isLoading } = useQuery({
-        queryKey: ['categories'],
-        queryFn: async () => {
 
-            const res = await fetch('http://localhost:5000/category');
-            const data = await res.json();
-            return data
+
+    const { data: categories, isLoading, refetch } = useQuery({
+        queryKey: [' categories'],
+        queryFn: async () => {
+            try {
+                const res = await fetch('http://localhost:5000/category', {
+                    headers: {
+                        authorization: `bearer ${localStorage.getItem('accessToken')}`
+                    }
+                });
+                const data = await res.json();
+                return data;
+            }
+            catch (error) {
+
+            }
         }
-    })
+    });
+
 
     const handleAddProduct = data => {
         console.log(data);

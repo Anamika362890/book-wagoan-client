@@ -101,7 +101,7 @@ const AllSellers = () => {
                     <tbody>
 
                         {
-                            sellers.map((seller, i) => <tr >
+                            sellers.map((seller, i) => <tr key={seller._id} >
                                 <th>{i + 1}</th>
                                 <td><div className="mask mask-squircle w-12 h-12">
                                     <img src={seller.photourl} alt='' />
