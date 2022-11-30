@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 
-const UseAdmin = email => {
-    const [isAdmin, setIsAdmin] = useState(false);
-    const [isAdminLoading, setIsAdminLoading] = useState(true);
+const UseBuyer = email => {
+    const [isBuyer, setIsBuyer] = useState(false);
+    const [isBuyerLoading, setIsBuyerLoading] = useState(true);
     useEffect(() => {
         if (email) {
 
@@ -11,16 +11,16 @@ const UseAdmin = email => {
                 .then(data => {
                     if (data.accessToken) {
                         localStorage.setItem('accessToken', data.accessToken);
-                        setIsAdmin(data.isAdmin);
-                        setIsAdminLoading(false);
+                        setIsBuyer(data.isBuyer);
+                        setIsBuyerLoading(false);
 
                     }
                 });
         }
 
     }, [email]);
-    return [isAdmin, isAdminLoading];
+    return [isBuyer, isBuyerLoading];
 }
 
 
-export default UseAdmin;
+export default UseBuyer;

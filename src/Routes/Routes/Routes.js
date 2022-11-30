@@ -55,7 +55,7 @@ export const router = createBrowserRouter(
                 {
                     path: '/products/:id',
                     element: <PrivateRoute><AllProducts></AllProducts></PrivateRoute>,
-                    loader: ({ params }) => fetch(`http://localhost:5000/products/${params.id}`)
+                    loader: ({ params }) => fetch(`https://book-wagon-server.vercel.app/products/${params.id}`)
                 },
 
 
@@ -69,9 +69,14 @@ export const router = createBrowserRouter(
 
 
         {
+
+
+
             path: '/dashboard',
             element: <PrivateRoute><DashboardLayout></DashboardLayout></PrivateRoute>,
+
             children: [
+
 
                 {
                     path: '/dashboard',

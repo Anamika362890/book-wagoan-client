@@ -1,8 +1,21 @@
-import React from 'react';
-import { Link, Outlet } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Link, Outlet, useLoaderData } from 'react-router-dom';
 import Nav from '../Pages/Shared/Nav/Nav';
+import { useContext } from 'react';
+import { AuthContext } from '../Context/AuthProvider';
+import axios from "axios";
+import { useQuery } from '@tanstack/react-query';
+import UseAdmin from '../Hooks/useAdmin';
+import UseBuyer from '../Hooks/UseBuyer'
+import UseSeller from '../Hooks/useSeller';
 
 const DashboardLayout = () => {
+    const { user } = useContext(AuthContext)
+    const [isAdmin] = UseAdmin(user?.email)
+    const [isBuyer] = UseBuyer(user?.email)
+    const [isSeller] = UseSeller(user?.email)
+
+
     return (
         <div>
             <Nav></Nav>
@@ -27,22 +40,42 @@ const DashboardLayout = () => {
                         </div>
 
                         <div className=''>
-                            {/* buyer */}
-                            <li><Link to='/dashboard/myorders' >My Orders</Link></li>
-                            {/* seller */}
-                            <li><Link to='/dashboard/addProduct' >Add Product</Link></li>
-                            <li><Link to='/dashboard/myProducts' >My Product</Link></li>
 
-                            <li><Link to='/dashboard/myBuyers' >My Buyers</Link></li>
+                            {
 
-                            <li><Link to='/dashboard/reportedItems' >Reported Items</Link></li>
+                                <li><Link to='/dashboard/myorders' >My Orders</Link></li>
+                            }
 
-                            {/* Admin */}
-                            <li><Link to='/dashboard/allusers' >All Users</Link></li>
 
-                            <li><Link to='/dashboard/allSeller' >All Sellers</Link></li>
 
-                            <li><Link to='/dashboard/allBuyers' >All Buyers</Link></li>
+
+
+
+                            {
+
+                                <>
+                                    <li><Link to='/dashboard/addProduct' >Add Product</Link></li>
+                                    <li><Link to='/dashboard/myProducts' >My Product</Link></li>
+                                </>
+                            }
+
+
+
+
+
+
+                            {
+
+                                <>
+                                    <li><Link to='/dashboard/reportedItems' >Reported Items</Link></li>
+                                    <li><Link to='/dashboard/allusers' >All Users</Link></li>
+
+                                    <li><Link to='/dashboard/allSeller' >All Sellers</Link></li>
+
+                                    <li><Link to='/dashboard/allBuyers' >All Buyers</Link></li>
+
+                                </>
+                            }
 
 
 

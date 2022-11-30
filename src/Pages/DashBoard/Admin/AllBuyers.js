@@ -22,7 +22,7 @@ const AllBuyers = () => {
         queryKey: ['buyers'],
         queryFn: async () => {
             try {
-                const res = await fetch('http://localhost:5000/buyers', {
+                const res = await fetch('https://book-wagon-server.vercel.app/buyers', {
                     headers: {
                         authorization: `bearer ${localStorage.getItem('accessToken')}`
                     }
@@ -43,7 +43,7 @@ const AllBuyers = () => {
 
     const handleDeletingBuyer = buyer => {
         console.log(buyer);
-        fetch(`http://localhost:5000/buyers/${buyer._id}`, {
+        fetch(`https://book-wagon-server.vercel.app/buyers/${buyer._id}`, {
             method: 'DELETE',
             headers: {
                 authorization: `bearer ${localStorage.getItem('accessToken')}`

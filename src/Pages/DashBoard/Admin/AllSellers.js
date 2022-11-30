@@ -21,7 +21,7 @@ const AllSellers = () => {
         queryKey: ['sellers'],
         queryFn: async () => {
             try {
-                const res = await fetch('http://localhost:5000/sellers', {
+                const res = await fetch('https://book-wagon-server.vercel.app/sellers', {
                     headers: {
                         authorization: `bearer ${localStorage.getItem('accessToken')}`
                     }
@@ -37,7 +37,7 @@ const AllSellers = () => {
 
     const handleDeletingSeller = seller => {
         console.log(seller);
-        fetch(`http://localhost:5000/users/${seller._id}`, {
+        fetch(`https://book-wagon-server.vercel.app/users/${seller._id}`, {
             method: 'DELETE',
             headers: {
                 authorization: `bearer ${localStorage.getItem('accessToken')}`
@@ -56,7 +56,7 @@ const AllSellers = () => {
 
 
     const handleVerifiedSeller = id => {
-        fetch(`http://localhost:5000/users/verify/${id}`, {
+        fetch(`https://book-wagon-server.vercel.app/users/verify/${id}`, {
             method: 'PUT',
             headers: {
                 authorization: `bearer ${localStorage.getItem('accessToken')}`
@@ -120,14 +120,15 @@ const AllSellers = () => {
 
                                     }
 
+
+
                                     {
 
-
-                                        <label onClick={() => handleVerifiedSeller(seller._id)} htmlFor="Confirmation-modal" className=" btn bg-gradient-to-r from-green-800 to-green-700 border-none">Already Verify</label>
+                                        seller?.status === "verified" &&
+                                        <label onClick={() => handleVerifiedSeller(seller._id)} htmlFor="Confirmation-modal" className=" btn bg-gradient-to-r from-green-800 to-green-700 border-none">Verified</label>
 
 
                                     }
-
 
 
 

@@ -22,7 +22,7 @@ const ProductAdd = () => {
         queryKey: [' categories'],
         queryFn: async () => {
             try {
-                const res = await fetch('http://localhost:5000/category', {
+                const res = await fetch('https://book-wagon-server.vercel.app/category', {
                     headers: {
                         authorization: `bearer ${localStorage.getItem('accessToken')}`
                     }
@@ -77,7 +77,7 @@ const ProductAdd = () => {
                     }
 
                     // save product information to the database
-                    fetch('http://localhost:5000/products', {
+                    fetch('https://book-wagon-server.vercel.app/products', {
                         method: 'POST',
                         headers: {
                             'content-type': 'application/json',

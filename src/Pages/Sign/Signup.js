@@ -63,7 +63,7 @@ const Signup = () => {
 
     const saveUser = (name, email, role, photourl) => {
         const user = { name, email, role, photourl };
-        fetch('http://localhost:5000/users', {
+        fetch('https://book-wagon-server.vercel.app/users', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

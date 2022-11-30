@@ -8,21 +8,32 @@ const MyOrders = () => {
 
 
     const { user } = useContext(AuthContext);
-    const url = `http://localhost:5000/booking?email=${user?.email}`;
 
-    const { data: bookings = [] } = useQuery({
+
+
+
+    const { data: bookings, isLoading, refetch } = useQuery({
         queryKey: ['bookings', user?.email],
         queryFn: async () => {
-            const res = await fetch(url, {
-                headers: {
-                    authorization: `bearer ${localStorage.getItem('accessToken')}`
-                }
-            });
-            const data = await res.json();
-            console.log(bookings);
-            return data;
+            try {
+                const res = await fetch(`https://book-wagon-server.vercel.app/booking?email=${user?.email}`, {
+                    headers: {
+                        authorization: `bearer ${localStorage.getItem('accessToken')}`
+                    }
+                });
+                const data = await res.json();
+                console.log(bookings);
+                return data;
+            }
+            catch (error) {
+
+            }
         }
-    })
+    });
+
+
+
+
 
     return (
         <div>

@@ -19,7 +19,7 @@ const MyProducts = () => {
         queryKey: ['products', user?.email],
         queryFn: async () => {
             try {
-                const res = await fetch(`http://localhost:5000/lproducts?email=${user?.email}`, {
+                const res = await fetch(`https://book-wagon-server.vercel.app/lproducts?email=${user?.email}`, {
                     headers: {
                         authorization: `bearer ${localStorage.getItem('accessToken')}`
                     }
@@ -34,7 +34,7 @@ const MyProducts = () => {
     });
     const handleDeletingProduct = product => {
         console.log(product);
-        fetch(`http://localhost:5000/products/${product._id}`, {
+        fetch(`https://book-wagon-server.vercel.app/products/${product._id}`, {
             method: 'DELETE',
             headers: {
                 authorization: `bearer ${localStorage.getItem('accessToken')}`
