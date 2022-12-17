@@ -15,6 +15,10 @@ const DashboardLayout = () => {
     const [isBuyer] = UseBuyer(user?.email)
     const [isSeller] = UseSeller(user?.email)
 
+    console.log(isAdmin)
+    console.log(isBuyer)
+    console.log(isSeller)
+
 
     return (
         <div>
@@ -52,7 +56,7 @@ const DashboardLayout = () => {
 
 
                             {
-
+                                isSeller &&
                                 <>
                                     <li><Link to='/dashboard/addProduct' >Add Product</Link></li>
                                     <li><Link to='/dashboard/myProducts' >My Product</Link></li>
@@ -65,16 +69,17 @@ const DashboardLayout = () => {
 
 
                             {
+                                isAdmin ?
+                                    <>
+                                        <li><Link to='/dashboard/reportedItems' >Reported Items</Link></li>
+                                        <li><Link to='/dashboard/allusers' >All Users</Link></li>
 
-                                <>
-                                    <li><Link to='/dashboard/reportedItems' >Reported Items</Link></li>
-                                    <li><Link to='/dashboard/allusers' >All Users</Link></li>
+                                        <li><Link to='/dashboard/allSeller' >All Sellers</Link></li>
 
-                                    <li><Link to='/dashboard/allSeller' >All Sellers</Link></li>
+                                        <li><Link to='/dashboard/allBuyers' >All Buyers</Link></li>
 
-                                    <li><Link to='/dashboard/allBuyers' >All Buyers</Link></li>
-
-                                </>
+                                    </> :
+                                    <li><Link to='/dashboard/allBuyers' >Buyers</Link></li>
                             }
 
 

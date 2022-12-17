@@ -29,7 +29,7 @@ const BookingModal = ({ book_name, price, category_id, book_image, setOrdering }
         }
         console.log(booking);
 
-        fetch('https://book-wagon-server.vercel.app/booking', {
+        fetch('http://localhost:5000/booking', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
