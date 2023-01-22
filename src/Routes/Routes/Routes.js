@@ -2,7 +2,9 @@ import { createBrowserRouter } from "react-router-dom";
 import AllProducts from "../../AllProduct/AllProducts";
 
 import DashboardLayout from "../../Layout/DashboardLayout";
+import AboutUS from "../../Pages/About Us/AboutUS";
 import Blogs from "../../Pages/Blog/Blogs";
+import Contact from "../../Pages/Contact/Contact";
 import AllBuyers from "../../Pages/DashBoard/Admin/AllBuyers";
 import AllSellers from "../../Pages/DashBoard/Admin/AllSellers";
 import AllUsers from "../../Pages/DashBoard/Admin/AllUsers";
@@ -12,6 +14,7 @@ import Dashboard from "../../Pages/DashBoard/Dashboard";
 import MyBuyers from "../../Pages/DashBoard/Seller/MyBuyers";
 import MyProducts from "../../Pages/DashBoard/Seller/MyProducts";
 import ProductAdd from "../../Pages/DashBoard/Seller/ProductAdd";
+import FAQ from "../../Pages/FAQ/FAQ";
 import FullHome from "../../Pages/Home/FullHome/FullHome";
 import Products from "../../Pages/Products/Products";
 import Route404 from "../../Pages/Route404/Route404";
@@ -50,8 +53,18 @@ export const router = createBrowserRouter(
                     path: "/blog",
                     element: <Blogs></Blogs>
                 },
-
-
+                {
+                    path: "/aboutUs",
+                    element: <AboutUS></AboutUS>
+                },
+                {
+                    path: "/faq",
+                    element: <FAQ></FAQ>
+                },
+                {
+                    path: "/contact",
+                    element: <Contact></Contact>
+                },
                 {
                     path: '/products/:id',
                     element: <PrivateRoute><AllProducts></AllProducts></PrivateRoute>,

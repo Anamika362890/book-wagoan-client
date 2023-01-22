@@ -12,9 +12,9 @@ const Nav = () => {
         <li><Link to='/'>Home</Link></li>
         <li><Link to='/blog'>Blog</Link></li>
         <li><Link to='/blog'>Our Services</Link></li>
-        <li><Link to='/blog'>About US</Link></li>
-        <li><Link to='/blog'>Feedback</Link></li>
-
+        <li><Link to='/aboutUs'>About US</Link></li>
+        <li><Link to='/faq'>FAQ</Link></li>
+        <li><Link to='/contact'>Contact Us</Link></li>
 
 
         {
