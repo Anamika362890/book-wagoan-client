@@ -4,6 +4,8 @@ const FAQ = () => {
     return (
         <div>
             <section class="bg-white dark:bg-gray-900">
+
+                <iframe className='w-full h-[500px]' src="https://embed.lottiefiles.com/animation/89871"></iframe>
                 <div class="container px-6 py-12 mx-auto">
                     <h1 class="text-3xl font-semibold text-gray-800 lg:text-4xl dark:text-white">Frequently asked questions.</h1>
 
